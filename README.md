@@ -24,14 +24,18 @@
 
 ```
 task-manager-react/
-├── server/index.js     # Express 后端（REST API + Supabase）
-├── src/                # React 前端
+├── app.js             # Express 应用核心（共享给本地与 Vercel serverless）
+├── server/index.js    # 本地/生产服务入口（加载 app.js + 生产托管 dist）
+├── api/index.js       # Vercel Serverless 入口
+├── src/               # React 前端
 │   ├── main.jsx
-│   ├── App.jsx         # 主要交互逻辑
+│   ├── App.jsx        # 主要交互逻辑
 │   └── App.css
-├── vite.config.js      # Vite 配置（/api 代理到后端）
+├── vite.config.js     # Vite 配置（/api 代理到后端）
 ├── index.html
-├── .env.example        # 环境变量模板
+├── vercel.json        # Vercel 部署配置
+├── render.yaml        # Render 部署配置
+├── .env.example       # 环境变量模板
 └── package.json
 ```
 
@@ -83,7 +87,10 @@ npm start        # NODE_ENV=production，Express 托管 dist，单端口 http://
 
 ### Vercel
 
-使用 `vercel.json`（见仓库内文件），Build Command `npm run build`，Start Command `npm start`。
+使用 `vercel.json`（见仓库内文件）：前端由 Vite 构建为静态资源，后端走 `api/index.js` Serverless 函数。
+1. 在 Vercel 导入仓库，选择 Vite 框架
+2. 在项目 Settings → Environment Variables 添加 `SUPABASE_URL`、`SUPABASE_ANON_KEY`
+3. 部署后即可访问（API 与前端由同一部署提供）
 
 ## API
 
