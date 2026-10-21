@@ -4,6 +4,10 @@
   "description": "智能任务管理系统（Node.js + Express 后端 + React 前端 + Supabase）",
   "private": true,
   "type": "commonjs",
+  "engines": {
+    "node": "20.x",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "concurrently -n server,client -c blue,green \"node server/index.js\" \"vite\"",
     "dev:server": "node server/index.js",
