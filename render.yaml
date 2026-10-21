@@ -1,0 +1,15 @@
+# Render 部署配置（标准 Node 服务）
+services:
+  - type: web
+    name: task-manager-react
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: SUPABASE_URL
+        value: https://fncuvblyajohczowjqcz.supabase.co
+      - key: SUPABASE_ANON_KEY
+        sync: false   # 在 Render 后台手动填入 anon key
+      - key: NODE_ENV
+        value: production

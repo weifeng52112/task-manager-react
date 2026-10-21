@@ -1,0 +1,12 @@
+# Vercel 部署配置（标准 Node 服务）
+# Build Command: npm run build   Start Command: npm start
+{
+  "version": 2,
+  "builds": [
+    { "src": "server/index.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server/index.js" },
+    { "src": "/(.*)", "dest": "/server/index.js" }
+  ]
+}
